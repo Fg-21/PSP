@@ -83,7 +83,9 @@ def del_user(id: int):
         if director.id == id:
             director_list.remove(director)
             return{}
-    raise HTTPException(status_code=404, detail="Director no encontrado")   
+    raise HTTPException(status_code=404, detail="Director no encontrado") 
+
+  
 
 #calcular la id siguiente
 def next_id():
