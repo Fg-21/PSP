@@ -32,9 +32,28 @@ def add_user(user: User):
      usersLista.append(user)
      return user
 
+@app.put("/users/{id}", response_model=User)
+def mod_user(id: int, user: User):
+    for index, saved_user in enumerate(usersLista):
+        print(saved_user.id == id)
+        if saved_user.id == id:
+            user.id = id
+            usersLista[index] = user
+            return user
+    raise HTTPException(status_code = 404, detail="Usuario no encontrado")    
+
+@app.delete("/users/{id}")
+def del_user(id: int):
+    for user in usersLista:
+        if user.id == id:
+            usersLista.remove(user)
+            return{}
+    raise HTTPException(status_code=404, detail="Usuario no encontrado")    
+
+
 #devolver el siguiente id
 def next_id():
-     return (max(usersLista, key=id)+1)
+     return (max(usersLista, key=id).id+1)
 
 #buscar el usuario
 def search_user(id: int):
@@ -43,3 +62,4 @@ def search_user(id: int):
         raise HTTPException(status_code=404, detail="Usuario no encontrado")
     else:
         return listaFiltrada
+    
