@@ -1,7 +1,8 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 
-app = FastAPI()
+router = APIRouter(prefix="/supermercados",
+                   tags=["supermercado"])
 
 
 class Supermercado(BaseModel):
@@ -25,12 +26,13 @@ sm_list = [
     Supermercado(id=10, fecha="05/10/2024", superficie=600.0, direccion="Avenida Libertad 100", id_director=5),
 ]
 
-
-@app.get("/supermercados")
+#get
+@router.get("/")
 def get_supers():
     return sm_list
 
-@app.post("/supermercados", status_code=201, response_model=Supermercado)
+#post
+@router.post("/", status_code=201, response_model=Supermercado)
 def add_super(super: Supermercado):
      super.id = next_id()
      sm_list.append(super)
@@ -38,7 +40,7 @@ def add_super(super: Supermercado):
 
 
 #put
-@app.put("/supermercados/{id}", response_model=Supermercado)
+@router.put("/{id}", response_model=Supermercado)
 def mod_super(id: int, super: Supermercado):
     for index, saved_super in enumerate(sm_list):
         if saved_super.id == id:
@@ -48,7 +50,7 @@ def mod_super(id: int, super: Supermercado):
     raise HTTPException(status_code=404, detail="Supermercado no encontrado")
 
 #delete
-@app.delete("/supermercados/{id}")
+@router.delete("/{id}")
 def del_super(id: int):
     for super in sm_list:
         if super.id == id:
