@@ -26,6 +26,7 @@ def get_directors():
     return director_list
 
 # Id
+
 @router.get("/{id_directors}")
 def get_director_by_id(id_directors: int):
     director = next((d for d in director_list if d.id == id_directors), None)
