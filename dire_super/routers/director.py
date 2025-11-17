@@ -1,5 +1,7 @@
-from fastapi import HTTPException, APIRouter
+from fastapi import Depends, HTTPException, APIRouter
 from pydantic import BaseModel
+
+from dire_super.routers.auth_user import authentication
 
 router = APIRouter(prefix="/directores",
                    tags=["director"])
@@ -62,7 +64,7 @@ def get_director_by_telephone(email: str):
 
 #Post
 @router.post("/", status_code=201, response_model=Director)
-def add_user(director: Director):
+def add_user(director: Director, authorized = Depends(authentication)):
      director.id = next_id()
      director_list.append(director)
      return director
