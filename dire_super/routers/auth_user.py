@@ -106,14 +106,14 @@ async def login(form: OAuth2PasswordRequestForm = Depends()):
                     access_token = {"sub" : user.name, "exp" : expire}
 
                     #Generar token
-                    token = jwt.encode(access_token, SECRET_KEY, algorithm=ALGORITHM)
+                    token = jwt.encode(access_token, SECRET_KEY, algorithms=[ALGORITHM])
                     return {"access_token": token, "token_type" : "bearer"}
         except:
             raise HTTPException(status_code=400, detail="Error al verificar contraseña")
     raise HTTPException(status_code=401, detail="Usuario o contraseña incorrectos")
 
 async def authentication(token: str = Depends(oauth2)):
-    username = jwt.decode(token, SECRET_KEY, algorithm = ALGORITHM).get("sub")
+    username = jwt.decode(token, SECRET_KEY, algorithms = [ALGORITHM]).get("sub")
 
     try: 
         if username is None:

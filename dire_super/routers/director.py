@@ -1,7 +1,7 @@
 from fastapi import Depends, HTTPException, APIRouter
 from pydantic import BaseModel
 
-from dire_super.routers.auth_user import authentication
+from routers.auth_user import authentication
 
 router = APIRouter(prefix="/directores",
                    tags=["director"])
