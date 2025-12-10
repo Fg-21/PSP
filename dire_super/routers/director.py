@@ -1,5 +1,8 @@
 from fastapi import Depends, HTTPException, APIRouter
 from pydantic import BaseModel
+from db.models.director import Director
+from db.schemas.director import director_schema
+from db import client
 
 from routers.auth_user import authentication
 
