@@ -10,3 +10,6 @@ app.include_router(supermercado.router)
 app.include_router(auth_user.router_user)
 app.mount("/static", StaticFiles(directory="static"), name = "static")
     
+@app.get("/")
+def getGreeting():
+    return {"detail": "Hello this is my API"}
