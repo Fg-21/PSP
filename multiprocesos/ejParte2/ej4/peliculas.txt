@@ -1,0 +1,48 @@
+The Shawshank Redemption;1994
+The Godfather;1972
+The Dark Knight;2008
+Pulp Fiction;1994
+Forrest Gump;1994
+Inception;2010
+The Matrix;1999
+Goodfellas;1990
+The Silence of the Lambs;1991
+Interstellar;2014
+The Lord of the Rings: The Return of the King;2003
+Gladiator;2000
+Titanic;1997
+The Avengers;2012
+Jurassic Park;1993
+Avatar;2009
+Star Wars: Episode IV;1977
+The Lion King;1994
+Back to the Future;1985
+The Terminator;1984
+E.T. the Extra-Terrestrial;1982
+Blade Runner;1982
+Raiders of the Lost Ark;1981
+Alien;1979
+The Exorcist;1973
+Jaws;1975
+Casablanca;1942
+Gone with the Wind;1939
+The Wizard of Oz;1939
+Psycho;1960
+Vertigo;1958
+Citizen Kane;1941
+La La Land;2016
+Moonlight;2016
+Parasite;2019
+Joker;2019
+1917;2019
+Dunkirk;2017
+Get Out;2017
+Spider-Man: No Way Home;2021
+Dune;2021
+Everything Everywhere All at Once;2022
+Top Gun: Maverick;2022
+The Batman;2022
+Oppenheimer;2023
+Barbie;2023
+Guardians of the Galaxy Vol. 3;2023
+Mission: Impossible - Dead Reckoning Part One;2023

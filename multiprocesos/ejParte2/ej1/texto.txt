@@ -1,0 +1,5 @@
+La programación en Python es fascinante y muy versátil.
+El módulo multiprocessing permite ejecutar código en paralelo.
+Las vocales son letras fundamentales en nuestro idioma.
+Aprender a usar procesos concurrentes mejora el rendimiento.
+Este ejercicio cuenta las vocales de forma paralela usando multiprocessing.
