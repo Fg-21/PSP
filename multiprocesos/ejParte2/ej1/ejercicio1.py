@@ -1,20 +1,8 @@
-"""
-EJERCICIO 1: Contar vocales en un fichero usando multiprocessing
-Crea procesos paralelos para contar cada vocal en un archivo de texto.
-"""
-
 from multiprocessing import Process
 import time
 
 
 def contar_vocal(vocal, ruta_fichero):
-    """
-    Función que cuenta cuántas veces aparece una vocal en un fichero
-    
-    Args:
-        vocal: La vocal a contar (a, e, i, o, u)
-        ruta_fichero: Ruta al fichero de texto
-    """
     try:
         with open(ruta_fichero, 'r', encoding='utf-8') as f:
             contenido = f.read().lower()

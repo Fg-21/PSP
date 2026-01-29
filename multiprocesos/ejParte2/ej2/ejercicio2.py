@@ -1,31 +1,13 @@
-"""
-EJERCICIO 2: Procesos enlazados - Filtrado de direcciones IP
-Tres procesos que se comunican mediante Pipes:
-- Proceso 1: Genera 10 IPs aleatorias
-- Proceso 2: Filtra IPs de clase A, B o C
-- Proceso 3: Imprime las IPs filtradas con su clase
-"""
-
 from multiprocessing import Process, Pipe
 import random
 import time
 
 
 def generar_ip_aleatoria():
-    """Genera una dirección IP aleatoria"""
     return f"{random.randint(0, 255)}.{random.randint(0, 255)}.{random.randint(0, 255)}.{random.randint(0, 255)}"
 
 
 def clasificar_ip(ip):
-    """
-    Determina la clase de una dirección IP
-    
-    Clase A: 0.0.0.0 - 127.255.255.255 (primer octeto: 0-127)
-    Clase B: 128.0.0.0 - 191.255.255.255 (primer octeto: 128-191)
-    Clase C: 192.0.0.0 - 223.255.255.255 (primer octeto: 192-223)
-    Clase D: 224.0.0.0 - 239.255.255.255 (Multicast)
-    Clase E: 240.0.0.0 - 255.255.255.255 (Reservada)
-    """
     primer_octeto = int(ip.split('.')[0])
     
     if 0 <= primer_octeto <= 127:
@@ -41,9 +23,6 @@ def clasificar_ip(ip):
 
 
 def proceso1_generar_ips(conn):
-    """
-    Proceso 1: Genera 10 direcciones IP aleatorias y las envía al Proceso 2
-    """
     print("[Proceso 1] Generando 10 direcciones IP aleatorias...")
     
     for i in range(10):
@@ -58,10 +37,6 @@ def proceso1_generar_ips(conn):
 
 
 def proceso2_filtrar_ips(conn_entrada, conn_salida):
-    """
-    Proceso 2: Lee las IPs del Proceso 1 y envía al Proceso 3
-    solo las de clase A, B o C
-    """
     print("[Proceso 2] Esperando direcciones IP para filtrar...")
     
     ips_filtradas = 0
@@ -92,9 +67,6 @@ def proceso2_filtrar_ips(conn_entrada, conn_salida):
 
 
 def proceso3_mostrar_ips(conn):
-    """
-    Proceso 3: Lee las IPs del Proceso 2 e imprime la IP con su clase
-    """
     print("[Proceso 3] Esperando direcciones IP filtradas...\n")
     print("=" * 60)
     print("DIRECCIONES IP VÁLIDAS (Clases A, B, C)")

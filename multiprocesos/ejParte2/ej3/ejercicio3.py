@@ -1,11 +1,3 @@
-"""
-EJERCICIO 3: Sistema de gestión de calificaciones
-Implementa tres procesos:
-- Proceso 1: Genera 6 notas aleatorias y las guarda en un fichero
-- Proceso 2: Lee las notas y calcula la media, guardándola en medias.txt
-- Proceso 3: Lee medias.txt y encuentra la nota máxima
-"""
-
 from multiprocessing import Process, Pool
 import random
 import time
@@ -13,13 +5,6 @@ import os
 
 
 def proceso1_generar_notas(ruta_fichero):
-    """
-    Proceso 1: Genera 6 números aleatorios entre 1 y 10 (con decimales)
-    y los guarda en un fichero
-    
-    Args:
-        ruta_fichero: Ruta del fichero donde guardar las notas
-    """
     notas = [round(random.uniform(1.0, 10.0), 2) for _ in range(6)]
     
     with open(ruta_fichero, 'w', encoding='utf-8') as f:
@@ -30,13 +15,6 @@ def proceso1_generar_notas(ruta_fichero):
 
 
 def proceso2_calcular_media(args):
-    """
-    Proceso 2: Lee un fichero con notas, calcula la media
-    y la almacena en medias.txt junto con el nombre del alumno
-    
-    Args:
-        args: Tupla (ruta_fichero, nombre_alumno)
-    """
     ruta_fichero, nombre_alumno = args
     
     try:
@@ -60,10 +38,6 @@ def proceso2_calcular_media(args):
 
 
 def proceso3_encontrar_maxima():
-    """
-    Proceso 3: Lee medias.txt y encuentra la nota máxima
-    con el nombre del alumno que la obtuvo
-    """
     try:
         with open('medias.txt', 'r', encoding='utf-8') as f:
             lineas = f.readlines()
@@ -102,9 +76,6 @@ def proceso3_encontrar_maxima():
 
 
 def ejercicio_con_pool():
-    """
-    Implementación usando Pool para paralelizar los procesos
-    """
     print("\n" + "=" * 60)
     print("EJERCICIO 3: Sistema de Calificaciones (usando Pool)")
     print("=" * 60)
@@ -123,7 +94,7 @@ def ejercicio_con_pool():
     with Pool(processes=10) as pool:
         pool.map(proceso1_generar_notas, ficheros)
     
-    print("[PASO 1] ✓ Notas generadas para todos los alumnos")
+    print("[PASO 1] Notas generadas para todos los alumnos")
     
     # PASO 2: Calcular medias (en paralelo)
     print("\n[PASO 2] Calculando medias en paralelo...")
@@ -142,13 +113,10 @@ def ejercicio_con_pool():
     tiempo_fin = time.time()
     tiempo_total = tiempo_fin - tiempo_inicio
     
-    print(f"\n⏱️  Tiempo total de ejecución: {tiempo_total:.4f} segundos\n")
+    print(f"\nTiempo total de ejecución: {tiempo_total:.4f} segundos\n")
 
 
 def ejercicio_con_bucles():
-    """
-    Implementación usando bucles for y Process manual
-    """
     print("\n" + "=" * 60)
     print("EJERCICIO 3: Sistema de Calificaciones (usando bucles for)")
     print("=" * 60)
@@ -172,7 +140,7 @@ def ejercicio_con_bucles():
     for p in procesos:
         p.join()
     
-    print("[PASO 1] ✓ Notas generadas para todos los alumnos")
+    print("[PASO 1] Notas generadas para todos los alumnos")
     
     # PASO 2: Calcular medias (en paralelo)
     print("\n[PASO 2] Calculando medias con bucle for...")
@@ -197,7 +165,7 @@ def ejercicio_con_bucles():
     tiempo_fin = time.time()
     tiempo_total = tiempo_fin - tiempo_inicio
     
-    print(f"\n⏱️  Tiempo total de ejecución: {tiempo_total:.4f} segundos\n")
+    print(f"\n Tiempo total de ejecución: {tiempo_total:.4f} segundos\n")
 
 
 if __name__ == '__main__':
@@ -232,4 +200,4 @@ if __name__ == '__main__':
             os.remove(f'Alumno{i+1}.txt')
         except:
             pass
-    print("[LIMPIEZA] ✓ Ficheros temporales eliminados")
+    print("[LIMPIEZA]  Ficheros temporales eliminados")

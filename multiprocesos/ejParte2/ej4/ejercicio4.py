@@ -1,25 +1,9 @@
-"""
-EJERCICIO 4: Filtrado de películas por año
-Implementa dos procesos que se comunican:
-- Proceso 1: Lee un fichero de películas y filtra por año
-- Proceso 2: Recibe películas y las guarda en un fichero
-"""
-
 from multiprocessing import Process, Queue
 import time
 import os
 
 
 def proceso1_filtrar_peliculas(ruta_fichero, anio, queue):
-    """
-    Proceso 1: Lee el fichero de películas y envía al Proceso 2
-    solo las películas estrenadas en el año especificado
-    
-    Args:
-        ruta_fichero: Ruta al fichero con las películas
-        anio: Año para filtrar las películas
-        queue: Cola para enviar las películas filtradas al Proceso 2
-    """
     try:
         print(f"[Proceso 1] Leyendo fichero: {ruta_fichero}")
         print(f"[Proceso 1] Filtrando películas del año {anio}...")
@@ -58,14 +42,6 @@ def proceso1_filtrar_peliculas(ruta_fichero, anio, queue):
 
 
 def proceso2_guardar_peliculas(queue, anio):
-    """
-    Proceso 2: Recibe películas del Proceso 1 y las guarda
-    en un fichero llamado peliculasXXXX.txt
-    
-    Args:
-        queue: Cola de donde recibir las películas
-        anio: Año para el nombre del fichero
-    """
     nombre_fichero = f"peliculas{anio}.txt"
     
     print(f"\n[Proceso 2] Esperando películas para guardar en {nombre_fichero}...")
@@ -83,16 +59,13 @@ def proceso2_guardar_peliculas(queue, anio):
             # Escribir en el fichero
             f.write(f"{pelicula};{anio_estreno}\n")
             peliculas_recibidas += 1
-            print(f"[Proceso 2] 💾 Guardada: {pelicula}")
+            print(f"[Proceso 2] Guardada: {pelicula}")
     
     print(f"\n[Proceso 2] Finalizado - Películas guardadas: {peliculas_recibidas}")
     print(f"[Proceso 2] Fichero creado: {nombre_fichero}")
 
 
 def main():
-    """
-    Main: Solicita datos al usuario y coordina los procesos
-    """
     print("=" * 70)
     print("EJERCICIO 4: Filtrado de películas por año")
     print("=" * 70)
